@@ -1,7 +1,7 @@
 #include "../WiiUQt/includes.h"
 #include "../WiiUQt/nandbin.h"
 #include "../WiiUQt/tools.h"
-
+#include <iostream> 
 //yippie for global variables
 QStringList args;
 NandBin nand;
@@ -15,6 +15,7 @@ bool color = true;
 #include <windows.h>
 #define C_STICKY 31
 #define C_CAP    192
+
 
 int origColor;
 HANDLE hConsole;
@@ -92,7 +93,7 @@ void PrintColoredString( const char *msg, int highlite )
     else
     {
         QString str( msg );
-        QStringList list = str.split( "\n", QString::SkipEmptyParts );
+        QStringList list = str.split( "\n", Qt::SkipEmptyParts );
         foreach( const QString &s, list )
         {
             QString m = s;
@@ -249,7 +250,7 @@ void CheckLostClusters()
 {
     QList<quint16> u = nand.GetFatsForEntry( 0 );//all clusters actually used for a file
     if( verbose )
-        qDebug() << "total used clusters" << hex << u.size() << "of 0x8000";
+        qDebug() << "total used clusters" << std::hex << u.size() << "of 0x8000";
     quint16 lost = 0;
     QList<quint16> ffs;
     QList<quint16> frs;
@@ -276,7 +277,7 @@ void CheckLostClusters()
             break;
         }
     }
-    qDebug() << "found" << lost << "lost clusters\nUNK ( 0xffff )" << hex << ffs.size() << ffs <<
+    qDebug() << "found" << lost << "lost clusters\nUNK ( 0xffff )" << std::hex << ffs.size() << ffs <<
             "\nfree           " << frs.size();
 }
 

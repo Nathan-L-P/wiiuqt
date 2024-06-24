@@ -1,7 +1,7 @@
 #ifndef INCLUDES_H
 #define INCLUDES_H
 
-#include <QApplication>
+#include "C:\Qt\6.7.1\msvc2019_64\include\QtWidgets\qapplication.h"
 #include <QAction>
 #include <QBuffer>
 #include <QDialog>
